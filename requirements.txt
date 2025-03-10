@@ -2,4 +2,4 @@ streamlit
 earthengine-api
 geemap
 pandas
-setuptools
+setuptools>=76.0.0
