@@ -15,7 +15,7 @@ st.set_page_config(
 
 # Authenticate with Google Earth Engine (Service Account)
 SERVICE_ACCOUNT = "gee-service-account@ee-dekagis.iam.gserviceaccount.com"
-KEY_FILE = os.path.expanduser("~/.config/gee/gee-key.json")
+KEY_FILE = "/home/dekarnldy/.config/gee/gee-key.json"  # Ganti dengan username Anda
 
 @st.cache_resource
 def initialize_gee():
