@@ -13,14 +13,14 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Authenticate with Google Earth Engine (Service Account)
-SERVICE_ACCOUNT = "gee-service-account@ee-dekagis.iam.gserviceaccount.com"
-KEY_FILE = "/home/dekarnldy/.config/gee/gee-key.json"  # Ganti dengan username Anda
+# Ambil kredensial dari Streamlit secrets
+service_account = st.secrets["gee"]["service_account"]
+private_key = st.secrets["gee"]["private_key"]
 
 @st.cache_resource
 def initialize_gee():
     try:
-        credentials = ee.ServiceAccountCredentials(SERVICE_ACCOUNT, KEY_FILE)
+        credentials = ee.ServiceAccountCredentials(service_account, private_key)
         ee.Initialize(credentials, project="ee-dekagis")
         return True
     except Exception as e:
