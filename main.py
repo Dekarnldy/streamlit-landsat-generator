@@ -1,5 +1,6 @@
 import streamlit as st
 import ee
+import os
 import geemap.foliumap as geemap
 from datetime import datetime
 from gee_utils import create_roi_province, get_indonesia_provinces
@@ -14,7 +15,7 @@ st.set_page_config(
 
 # Authenticate with Google Earth Engine (Service Account)
 SERVICE_ACCOUNT = "gee-service-account@ee-dekagis.iam.gserviceaccount.com"
-KEY_FILE = "ee-dekagis-cfe3874793f9.json"
+KEY_FILE = os.getenv("GOOGLE_APPLICATION_CREDENTIALS", "~/.config/gee/gee-key.json")
 
 @st.cache_resource
 def initialize_gee():
