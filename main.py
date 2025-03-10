@@ -3,7 +3,7 @@ import ee
 import geemap.foliumap as geemap
 from datetime import datetime
 import io
-from gee_utils import initialize_gee, create_roi_province, get_indonesia_provinces
+from gee_utils import create_roi_province, get_indonesia_provinces
 from landsat_utils import get_landsat_collection, get_visualization_params
 
 # Page config
@@ -15,7 +15,9 @@ st.set_page_config(
 
 # Initialize Google Earth Engine
 @st.cache_resource
-def initialize_gee_cached():
+# Initialize Google Earth Engine
+@st.cache_resource
+def initialize_gee():
     try:
         if not ee.data._initialized:  # Avoid redundant initialization
             ee.Initialize(project='ee-dekagis')  # Specify your project
@@ -25,11 +27,7 @@ def initialize_gee_cached():
         return None
 
 # Call the function
-gee_initialized = initialize_gee_cached()
-if gee_initialized:
-    st.success(gee_initialized)
-else:
-    st.error("Failed to initialize GEE.")
+gee_initialized = initialize_gee()
 
 # Title
 st.title("Landsat Imagery Generator")
