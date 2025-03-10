@@ -2,7 +2,7 @@ import ee
 import geemap
 
 def initialize_gee():
-    ee.Authenticate(opt_url='https://earthengine.googleapis.com')
+    ee.Authenticate()
     ee.Initialize(project="ee-dekagis")
 
 
