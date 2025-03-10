@@ -14,16 +14,22 @@ st.set_page_config(
 )
 
 # Initialize Google Earth Engine
-@st.cache_resource 
+@st.cache_resource
 def initialize_gee_cached():
     try:
-        initialize_gee()
-        return True
+        if not ee.data._initialized:  # Avoid redundant initialization
+            ee.Initialize(project='ee-dekagis')  # Specify your project
+        return "GEE Initialized"
     except Exception as e:
         st.error(f"Error initializing Google Earth Engine: {e}")
-        return False
+        return None
 
+# Call the function
 gee_initialized = initialize_gee_cached()
+if gee_initialized:
+    st.success(gee_initialized)
+else:
+    st.error("Failed to initialize GEE.")
 
 # Title
 st.title("Landsat Imagery Generator")
