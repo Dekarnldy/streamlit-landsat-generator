@@ -13,15 +13,11 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-# Ambil kredensial dari Streamlit secrets
-service_account = st.secrets["gee"]["service_account"]
-private_key = st.secrets["gee"]["private_key"]
-
 @st.cache_resource
 def initialize_gee():
     try:
-        credentials = ee.ServiceAccountCredentials(service_account, private_key)
-        ee.Initialize(credentials, project="ee-dekagis")
+        ee.Authenticate
+        ee.Initialize(project="ee-dekagis")
         return True
     except Exception as e:
         st.error(f"⚠️ Error initializing Google Earth Engine: {e}")
