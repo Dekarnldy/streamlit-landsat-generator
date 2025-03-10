@@ -12,14 +12,6 @@ def create_roi_province(province_name):
         .filter(ee.Filter.eq('ADM1_NAME', province_name))
     return roi
 
-def get_available_countries():
-    try:
-        countries = ee.FeatureCollection("FAO/GAUL/2015/level0")
-        country_list = countries.aggregate_array('ADM0_NAME').getInfo()
-        return sorted(country_list)
-    except:
-        return ["Indonesia"]
-
 def get_indonesia_provinces():
     try:
         provinces = ee.FeatureCollection("FAO/GAUL/2015/level1") \
@@ -37,5 +29,4 @@ def get_indonesia_provinces():
                 "Sulawesi Barat", "Sulawesi Selatan", "Sulawesi Tengah", "Sulawesi Tenggara",
                 "Sulawesi Utara", "Sumatera Barat", "Sumatera Selatan", "Sumatera Utara"]
 
-print(get_available_countries()) 
 print(get_indonesia_provinces()) 
